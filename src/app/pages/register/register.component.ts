@@ -10,6 +10,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   
   email= '' as string;
   password= '' as string;
+  confirmarPass = '' as string;
   errorMessage= '' as string;
 
   constructor(private authService: AuthService, private renderer: Renderer2) { }
