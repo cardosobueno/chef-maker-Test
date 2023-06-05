@@ -10,29 +10,37 @@ import { AppRoutingModule } from './app-routing.module'
 })
 export class AuthService {
 
-  user:any;
+  user: any;
   error: any;
 
-  constructor(public auth: AngularFireAuth, public route: Router) { 
+  constructor(public auth: AngularFireAuth, public route: Router) {
 
   }
 
-  async emailSignin(email: string, password: string)
-  {
-    try{
+  async registerWithEmail(email: string, password: string) {
+    try {
+      const credential = await this.auth.createUserWithEmailAndPassword(email, password);
+      this.user = credential.user;
+      // Redirecionar para a página de sucesso ou qualquer outra página desejada
+      this.route.navigate(['/home']);
+    } catch (error) {
+      this.error = error;
+    }
+  }
+
+  async emailSignin(email: string, password: string) {
+    try {
       const credential = await this.auth.signInWithEmailAndPassword(
         email,
         password
       );
       this.user = credential.user
-    }catch(error)
-    {
+    } catch (error) {
       this.error = error;
     }
   }
 
-  async googleSignin()
-  {
+  async googleSignin() {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
       const credential = await this.auth.signInWithPopup(provider);
@@ -43,8 +51,8 @@ export class AuthService {
   }
 
 
-  async signOut()
-  {
+
+  async signOut() {
     await this.auth.signOut();
     this.user = null;
   }

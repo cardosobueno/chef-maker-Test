@@ -43,3 +43,14 @@
     border-style: none;
     margin-top: 1.5rem;
 }
+
+#register{
+    color: white;
+    border: none;
+    background: none;
+    padding: 0rem;
+    text-decoration: underline;
+    width: 45%;
+    justify-content: center;
+    align-self: center;
+}

@@ -28,6 +28,11 @@ export class LoginComponent implements OnInit, OnDestroy{
     this.router.navigate(['/home'])
   }
 
+  irParaRegistrar()
+  {
+    this.router.navigate(['/register'])
+  }
+
 
   ngOnInit() {
     this.renderer.addClass(document.body, 'cor-login-background');
